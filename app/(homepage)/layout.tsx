@@ -4,7 +4,7 @@ type Props = {
   children: React.ReactNode;
 };
 
-const MarketingLayout = ({ children }: Props) => {
+const HomepageLayout = ({ children }: Props) => {
   return (
     <div className="min-h-screen flex flex-col">
       <HomepageHeader />
@@ -15,4 +15,4 @@ const MarketingLayout = ({ children }: Props) => {
   );
 };
 
-export default MarketingLayout;
+export default HomepageLayout;
