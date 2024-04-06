@@ -7,6 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "db:seed": "tsx ./scripts/seed.ts",
     "db:studio": "npx drizzle-kit studio",
     "db:push": "npx drizzle-kit push:pg"
   },
@@ -21,8 +22,10 @@
     "drizzle-orm": "^0.30.7",
     "lucide-react": "^0.364.0",
     "next": "14.1.4",
+    "next-themes": "^0.3.0",
     "react": "^18",
     "react-dom": "^18",
+    "sonner": "^1.4.41",
     "tailwind-merge": "^2.2.2",
     "tailwindcss-animate": "^1.0.7"
   },
@@ -37,6 +40,7 @@
     "pg": "^8.11.5",
     "postcss": "^8",
     "tailwindcss": "^3.3.0",
+    "tsx": "^4.7.2",
     "typescript": "^5"
   }
 }
