@@ -74,6 +74,30 @@ const main = async () => {
         order: 1,
         title: "Use basic phrases",
       },
+      {
+        id: 2,
+        unitId: 1, // Unit 1 (Learn the basics...)
+        order: 2,
+        title: "Greet people",
+      },
+      {
+        id: 3,
+        unitId: 1, // Unit 1 (Learn the basics...)
+        order: 3,
+        title: "Introduce yourself",
+      },
+      {
+        id: 4,
+        unitId: 1, // Unit 1 (Learn the basics...)
+        order: 4,
+        title: "Use the present tense",
+      },
+      {
+        id: 5,
+        unitId: 1, // Unit 1 (Learn the basics...)
+        order: 5,
+        title: "Get around town",
+      },
     ]);
 
     await db.insert(schema.challenges).values([
