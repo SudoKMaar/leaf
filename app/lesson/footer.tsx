@@ -7,7 +7,7 @@ type Props = {
   onCheck: () => void;
   status: "correct" | "wrong" | "none" | "completed";
   disabled?: boolean;
-  lessonId?: string;
+  lessonId?: number;
 };
 
 export const Footer = ({ status, onCheck, disabled, lessonId }: Props) => {
