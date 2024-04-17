@@ -1,5 +1,5 @@
 import { redirect } from "next/navigation";
-import { getLesson, getUserProgress } from "@/db/queries";
+import { getLesson, getUserProgress, getUserSubscription } from "@/db/queries";
 import { Quiz } from "../quiz";
 
 const LessonIDPage = async ({
@@ -9,10 +9,11 @@ const LessonIDPage = async ({
 }) => {
   const lessonData = getLesson(+lessonId);
   const userProgressData = getUserProgress();
-
+  const userSubscription = await getUserSubscription();
   const [lesson, userProgress] = await Promise.all([
     lessonData,
     userProgressData,
+    userSubscription,
   ]);
 
   if (!lesson || !userProgress) redirect("/learn");
@@ -28,7 +29,7 @@ const LessonIDPage = async ({
       initialLessonChallenges={lesson.challenges}
       initialHearts={userProgress.hearts}
       initialPercentage={initialPercentage}
-      userSubscription={null}
+      userSubscription={userSubscription}
     />
   );
 };

@@ -5,7 +5,7 @@ import { useAudio, useWindowSize, useMount } from "react-use";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import Confetti from "react-confetti";
-import { challengeOptions, challenges } from "@/db/schema";
+import { challengeOptions, challenges, userSubscription } from "@/db/schema";
 import { Header } from "./header";
 import { QuestionBubble } from "./question-bubble";
 import { Challenge } from "./challenge";
@@ -24,7 +24,11 @@ type Props = {
   })[];
   initialHearts: number;
   initialPercentage: number;
-  userSubscription: any;
+  userSubscription:
+    | (typeof userSubscription.$inferSelect & {
+        isActive: boolean;
+      })
+    | null;
 };
 
 export const Quiz = ({
