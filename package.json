@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "db:seed": "tsx ./scripts/seed.ts",
+    "db:reset": "tsx ./scripts/reset.ts",
     "db:studio": "npx drizzle-kit studio",
     "db:push": "npx drizzle-kit push:pg"
   },
@@ -26,7 +27,9 @@
     "lucide-react": "^0.364.0",
     "next": "14.1.4",
     "next-themes": "^0.3.0",
+    "ra-data-simple-rest": "^4.16.15",
     "react": "^18",
+    "react-admin": "^4.16.15",
     "react-circular-progressbar": "^2.1.0",
     "react-confetti": "^6.1.0",
     "react-dom": "^18",

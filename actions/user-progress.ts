@@ -79,7 +79,7 @@ export const reduceHearts = async (ChallengeId: number) => {
   if (!currentUserProgress) {
     throw new Error("User progress not found");
   }
-  if (!userSubscription?.isActive) {
+  if (userSubscription?.isActive) {
     return { error: "subscription" };
   }
   if (currentUserProgress.hearts === 0) {
@@ -94,12 +94,13 @@ export const reduceHearts = async (ChallengeId: number) => {
   revalidatePath(`/lesson/${lessonId}`);
   revalidatePath("/quests");
   revalidatePath("/leaderboard");
+  revalidatePath("/shop");
 };
 
 export const refillHearts = async () => {
   const currentUserProgress = await getUserProgress();
   if (!currentUserProgress) {
-    throw new Error("Hearts are already full");
+    throw new Error("User progress not found");
   }
   if (currentUserProgress.hearts === 5) {
     throw new Error("Hearts are already full");

@@ -52,14 +52,11 @@ export const Quiz = ({
     autoPlay: true,
   });
 
-  const [correctAudio, _c, correctAudioControls] = useAudio({
-    src: "/correct.wav",
-  });
-
-  const [incorrectAudio, _i, incorrectAudioControls] = useAudio({
+  const [correctAudio, _c, correctControls] = useAudio({ src: "/correct.wav" });
+  const [incorrectAudio, _i, incorrectControls] = useAudio({
     src: "/incorrect.wav",
   });
-  const [isPending, startTransition] = useTransition();
+  const [pending, startTransition] = useTransition();
   const [hearts, setHearts] = useState(initialHearts);
   const [percentage, setPercentage] = useState(() => {
     return initialPercentage === 100 ? 0 : initialPercentage;
@@ -80,6 +77,10 @@ export const Quiz = ({
 
   const onNext = () => {
     setActiveIndex((current) => current + 1);
+  };
+  const onSelect = (id: number) => {
+    if (status !== "none") return;
+    setSelectedOption(id);
   };
   const onContinue = () => {
     if (!selectedOption) return;
@@ -104,10 +105,10 @@ export const Quiz = ({
           .then((response) => {
             {
               if (response?.error === "hearts") {
-                console.error("Missing Hearts");
+                openHeartsModal();
                 return;
               }
-              correctAudioControls.play();
+              correctControls.play();
               setStatus("correct");
               setPercentage((prev) => prev + 100 / challenges.length);
               if (initialPercentage === 100) {
@@ -125,7 +126,7 @@ export const Quiz = ({
               openHeartsModal();
               return;
             }
-            incorrectAudioControls.play();
+            incorrectControls.play();
             setStatus("wrong");
             if (!response?.error) {
               setHearts((prev) => Math.max(prev - 1, 0));
@@ -134,10 +135,6 @@ export const Quiz = ({
           .catch(() => toast.error("Something went wrong. Please try again."));
       });
     }
-  };
-  const onSelect = (id: number) => {
-    if (status !== "none") return;
-    setSelectedOption(id);
   };
 
   if (!challenge) {
@@ -149,29 +146,29 @@ export const Quiz = ({
           height={height}
           recycle={false}
           numberOfPieces={500}
-          tweenDuration={10000}
+          tweenDuration={10_000}
         />
-        <div className="flex flex-col gap-y-4 lg:gap-y-8 max-w-lg mx-auto items-center justify-center text-center h-full">
+        <div className="mx-auto flex h-full max-w-lg flex-col items-center justify-center gap-y-4 text-center lg:gap-y-8">
           <Image
             src="/finish.svg"
-            alt="Finished"
+            alt="Finish"
             height={100}
             width={100}
             className="hidden lg:block"
           />
           <Image
             src="/finish.svg"
-            alt="Finished"
-            height={50}
+            alt="Finish"
             width={50}
+            height={50}
             className="block lg:hidden"
           />
-          <h1 className="text-xl lg:text-3xl text-neutral-700 font-bold">
+          <h1 className="text-lg font-bold text-neutral-700 lg:text-3xl">
             Great job ! <br /> You&apos;ve completed the lesson.
           </h1>
-          <div className="flex items-center gap-x-4 w-full">
-            <ResultCard variant="points" value={challenges.length * 10} />
 
+          <div className="flex w-full items-center gap-x-4">
+            <ResultCard variant="points" value={challenges.length * 10} />
             <ResultCard variant="hearts" value={hearts} />
           </div>
         </div>
@@ -201,27 +198,30 @@ export const Quiz = ({
       />
 
       <div className="flex-1 ">
-        <div className="h-full flex items-center justify-center">
-          <div className="lg:min-h-[350px] lg:w-[600px] w-full px-6 lg:px-0 flex flex-col gap-y-12">
-            <h1 className="text-lg lg:text-3xl text-center lg:text-start font-bold text-neutral-700">
+        <div className="flex h-full items-center justify-center">
+          <div className="flex w-full flex-col gap-y-12 px-6 lg:min-h-[350px] lg:w-[600px] lg:px-0">
+            <h1 className="text-center text-lg font-bold text-neutral-700 lg:text-start lg:text-3xl">
               {title}
             </h1>
-            {challenge.type === "ASSIST" && (
-              <QuestionBubble question={challenge.question} />
-            )}
-            <Challenge
-              options={options}
-              onSelect={onSelect}
-              status={status}
-              selectedOption={selectedOption}
-              disabled={isPending}
-              type={challenge.type}
-            />
+            <div>
+              {challenge.type === "ASSIST" && (
+                <QuestionBubble question={challenge.question} />
+              )}
+              <Challenge
+                options={options}
+                onSelect={onSelect}
+                status={status}
+                selectedOption={selectedOption}
+                disabled={pending}
+                type={challenge.type}
+              />
+            </div>
           </div>
         </div>
       </div>
+
       <Footer
-        disabled={!selectedOption || isPending}
+        disabled={!selectedOption || pending}
         status={status}
         onCheck={onContinue}
       />
