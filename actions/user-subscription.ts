@@ -26,6 +26,7 @@ export const createStripeUrl = async () => {
     mode: "subscription",
     payment_method_types: ["card"],
     customer_email: user.emailAddresses[0].emailAddress,
+    billing_address_collection: "required",
     line_items: [
       {
         quantity: 1,
