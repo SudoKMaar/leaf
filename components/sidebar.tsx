@@ -40,7 +40,12 @@ export const Sidebar = ({ className }: Props) => {
           <Loader className="h-5 w-5 text-muted-foreground animate-spin" />
         </ClerkLoading>
         <ClerkLoaded>
-          <UserButton afterSignOutUrl="/" />
+          <UserButton
+            afterSignOutUrl="/"
+            appearance={{
+              elements: { userButtonPopoverCard: { pointerEvents: "initial" } },
+            }}
+          />
         </ClerkLoaded>
       </div>
     </div>

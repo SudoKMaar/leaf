@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Nunito } from "next/font/google";
 import { ClerkProvider } from "@clerk/nextjs";
 import { Toaster } from "@/components/ui/sonner";
@@ -7,6 +7,10 @@ import "./globals.css";
 import HeartsModal from "@/components/modals/heart-modal";
 
 const font = Nunito({ subsets: ["latin"] });
+
+export const viewport: Viewport = {
+  themeColor: "#22C55E",
+};
 
 export const metadata: Metadata = {
   metadataBase: new URL(`${process.env.NEXT_PUBLIC_URL}`),
@@ -23,6 +27,49 @@ export const metadata: Metadata = {
     google: "w3roI87t-dIyKe7ReAdSWUVpWCe7K1pP_EXUidsZ3xI",
     me: "KMaar",
   },
+  keywords: [
+    "reactjs",
+    "nextjs",
+    "vercel",
+    "react",
+    "Abhishek Kumar",
+    "KMaar",
+    "LEAF",
+    "KMaar Miscellaneous Studio",
+    "duolingo-clone",
+    "learn-language",
+    "shadcn",
+    "shadcn-ui",
+    "radix-ui",
+    "cn",
+    "clsx",
+    "lingo",
+    "postgresql",
+    "sonner",
+    "drizzle",
+    "zustand",
+    "mysql",
+    "lucide-react",
+    "next-themes",
+    "clerk-themes",
+    "clerk",
+    "postcss",
+    "prettier",
+    "react-dom",
+    "tailwindcss",
+    "tailwindcss-animate",
+    "ui/ux",
+    "js",
+    "javascript",
+    "typescript",
+    "eslint",
+    "html",
+    "css",
+  ],
+  authors: {
+    name: "Abhishek Kumar",
+    url: "https://kmaar.vercel.app/",
+  },
 };
 
 export default function RootLayout({
@@ -31,10 +78,19 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <ClerkProvider>
+    <ClerkProvider
+      appearance={{
+        layout: {
+          logoImageUrl: "/favicon.ico",
+        },
+        variables: {
+          colorPrimary: "#22C55E",
+        },
+      }}
+    >
       <html lang="en">
         <body className={font.className}>
-          <Toaster />
+          <Toaster theme="light" richColors closeButton />
           <ExitModal />
           <HeartsModal />
           {children}
