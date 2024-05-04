@@ -1,36 +1,63 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# LEAF: Full-stack Duolingo Clone Web Application
+
+![LEAF Logo](/public/logo.webp)
+
+LEAF is a language learning platform inspired by Duolingo. It allows users to learn and practice languages through interactive exercises, quizzes, and gamified experiences. The application is built using modern technologies and follows best practices for scalability and maintainability.
+
+## Features
+
+- **User Authentication**: Users can sign up, log in, and track their progress.
+- **Language Selection**: Choose from a variety of languages to learn.
+- **Interactive Lessons**: Engage in interactive lessons covering vocabulary, grammar, and pronunciation.
+- **Progress Tracking**: Monitor your progress, earn points, and unlock new levels.
+- **Leaderboards**: Compete with other learners and see who's at the top.
+- **Responsive Design**: Works seamlessly on desktop, tablet, and mobile devices.
+
+## Tech Stack
+
+- **Frontend**:
+  - Next.js (React framework)
+  - TypeScript
+  - Tailwind CSS
+  - Shadcn UI (custom UI components)
+  - Zustand (state management)
+- **Backend**:
+  - Neon Database (for user data)
+  - Drizzle ORM (for database interactions)
+  - Stripe (for payment processing)
 
 ## Getting Started
 
-First, run the development server:
+1. Clone this repository:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+   ```bash
+   git clone https://github.com/SudoKMaar/leaf.git
+   ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Install dependencies:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+   ```bash
+   cd leaf
+   npm install
+   ```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+3. Set up environment variables:
 
-## Learn More
+   - Create a `.env.local` file in the root directory.
+   - Add your API keys and other sensitive information (e.g., Stripe secret key).
 
-To learn more about Next.js, take a look at the following resources:
+4. Run the development server:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+   ```bash
+   npm run dev
+   ```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+5. Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-## Deploy on Vercel
+## Contributing
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Contributions are welcome! Please follow our [contribution guidelines](CONTRIBUTING.md).
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## License
+
+This project is licensed under the MIT License. See [LICENSE](LICENSE) for details.
