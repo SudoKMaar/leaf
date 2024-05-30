@@ -6,9 +6,9 @@ type Props = {
 
 const HomepageLayout = ({ children }: Props) => {
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="relative flex flex-col items-center justify-center px-5 mx-auto overflow-hidden sm:px-10">
       <HomepageHeader />
-      <main className="flex-1 flex flex-col items-center justify-center">
+      <main className="flex flex-col items-center justify-center flex-1 mx-auto">
         {children}
       </main>
     </div>
